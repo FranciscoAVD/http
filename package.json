@@ -1,10 +1,40 @@
 {
   "name": "@vicstack/http",
-  "version": "0.1.0",
-  "module": "index.ts",
+  "version": "0.2.0",
+  "description": "Named HTTP status codes as a plain object, with no runtime dependencies.",
+  "license": "MIT",
+  "author": "Victoriano <fvictoriano.dev@gmail.com>",
+  "keywords": ["http", "status-codes"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FranciscoAVD/http.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FranciscoAVD/http/issues"
+  },
+  "homepage": "https://github.com/FranciscoAVD/http#readme",
   "type": "module",
+  "module": "./dist/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "README.md", "LICENSE"],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.build.json && bun build ./src/index.ts --outdir ./dist --target node --format esm",
+    "test": "bun test",
+    "prepublishOnly": "bun run test && bun run build"
+  },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "typescript": "^5"
   },
   "peerDependencies": {
     "typescript": "^5"

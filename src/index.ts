@@ -6,7 +6,7 @@ const HTTP = {
   EarlyHints: 103,
 
   // 2xx Success
-  Success: 200,
+  OK: 200,
   Created: 201,
   Accepted: 202,
   NonAuthoritativeInformation: 203,
@@ -72,4 +72,8 @@ const HTTP = {
   NetworkAuthenticationRequired: 511,
 } as const;
 
+export type HttpStatusName = keyof typeof HTTP;
+export type HttpStatusCode = (typeof HTTP)[HttpStatusName];
+
+export { HTTP };
 export default HTTP;
